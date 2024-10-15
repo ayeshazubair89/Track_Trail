@@ -1,7 +1,8 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:track_trail2/views/habit_tracking/habit_home_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:track_trail2/views/screens/onboarding_screen.dart';
+import 'package:track_trail2/views/screens/signin_screen.dart';
 
 import 'firebase_options.dart';
 
@@ -10,26 +11,32 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool onboardingComplete = prefs.getBool('onboardingComplete') ?? false;
+
+  runApp(MyApp(onboardingComplete: onboardingComplete));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool onboardingComplete;
 
-  // This widget is the root of your application.
+  const MyApp({super.key, required this.onboardingComplete});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'TRack TRail',
+      title: 'Track Trail',
       theme: ThemeData(
-        primaryColor: const Color(0xFFDFEEF6), // Light blue
+        primaryColor: const Color(0xFFDFF0E3), // Light Green
+        fontFamily: 'Poppins',
         colorScheme: ColorScheme(
-          primary: const Color(0xFFB0C7E1),       // Light blue
-          primaryContainer: const Color(0xFFDFEEF6), // Light blue
-          secondary: const Color(0xFFB0C7E1),    // Light blue
-          secondaryContainer: const Color(0xFFDFEEF6), // Light blue
+          primary: const Color(0xFF4CAF50),       // Green
+          primaryContainer: const Color(0xFFDFF0E3), // Light Green
+          secondary: const Color(0xFF4CAF50),    // Green
+          secondaryContainer: const Color(0xFFDFF0E3), // Light Green
           surface: Colors.white,
-          background: Colors.white,               // Set this to white
+          background: Colors.white,
           error: Colors.red,
           onPrimary: Colors.white,
           onSecondary: Colors.white,
@@ -38,10 +45,10 @@ class MyApp extends StatelessWidget {
           onError: Colors.white,
           brightness: Brightness.light,
         ),
-        scaffoldBackgroundColor: Colors.white, // Ensure the scaffold background is white
+        scaffoldBackgroundColor: Colors.white,
         useMaterial3: true,
       ),
-      home: HabitHomeScreen (),
+      home: onboardingComplete ? SignInScreen() : OnboardingScreen(),
     );
   }
 }

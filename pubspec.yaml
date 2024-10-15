@@ -48,6 +48,17 @@ dependencies:
   cloud_firestore_web: ^3.12.5
   firebase_auth_web: ^5.12.0
 
+  fl_chart: ^0.55.2
+  table_calendar: ^3.1.2
+  shared_preferences: ^2.0.13
+  flutter_svg: ^1.0.0
+
+
+  #noor's file libraries
+  get: ^4.6.6
+  form_validator: ^2.1.0
+  singleton: ^0.0.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -72,8 +83,21 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - assets/images/
+    - assets/images/
+    - lib/views/habit_tracking/
   #   - images/a_dot_ham.jpeg
+
+
+
+
+
+
+  fonts:
+    - family: Poppins
+      fonts:
+            - asset: assets/fonts/Poppins-Regular.ttf
+            - asset: assets/fonts/Poppins-Bold.ttf
+              weight: 700
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

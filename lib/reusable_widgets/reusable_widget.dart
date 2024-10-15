@@ -6,7 +6,7 @@ Image logoWidget(String imageName) {
     fit: BoxFit.fitWidth,
     width: 240,
     height: 240,
-    color: Color(0xFFb0c7e1),
+    color:Color(0xFF4CAF50) ,
   );
 }
 
@@ -22,7 +22,7 @@ TextField reusableTextField(String text, IconData icon, bool isPasswordType,
     decoration: InputDecoration(
       prefixIcon: Icon(
         icon,
-        color: Color(0xFFb0c7e1),
+        color: Color(0xFF4CAF50),
       ),
       labelText: text,
       labelStyle: TextStyle(color: Colors.black54),

@@ -29,7 +29,7 @@ class _SignInScreenState extends State<SignInScreen> {
         // If user is logged in, navigate to HomeScreen
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => HomeScreen()),
+          MaterialPageRoute(builder: (context) => MainScreen()),
         );
       }
     });
@@ -44,8 +44,8 @@ class _SignInScreenState extends State<SignInScreen> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              hexStringToColor("B0C7E1"),
-              hexStringToColor("DFEEF6"),
+              hexStringToColor("FFFFFF"),
+              hexStringToColor("FFFFFF"),
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -57,8 +57,29 @@ class _SignInScreenState extends State<SignInScreen> {
                 20, MediaQuery.of(context).size.height * 0.2, 20, 0),
             child: Column(
               children: <Widget>[
-                logoWidget("assets/images/onboarding_1.png"),
-                const SizedBox(height: 30),
+               // logoWidget("assets/images/onboarding_1.png"),
+                const SizedBox(height: 40),
+                Text(
+                  'Sign In',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF4CAF50),
+                    fontFamily: 'Poppins',
+                  ),
+                ),
+                Text(
+                  'Hi there ! Nice to see you again.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
+
+                    color: Colors.black54,
+                    fontFamily: 'Poppins',
+                  ),
+                ),
+                const SizedBox(height: 50),
                 if (errorMessage != null)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 20),
@@ -144,7 +165,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
-                    backgroundColor: Color(0xFFb0c7e1),
+                    backgroundColor: Color(0xFF4CAF50),
                     padding: EdgeInsets.symmetric(
                         vertical: 15, horizontal: 30),
                     shape: RoundedRectangleBorder(
@@ -197,7 +218,7 @@ class _SignInScreenState extends State<SignInScreen> {
           child: const Text(
             " Sign Up",
             style: TextStyle(
-                color: Color(0xFF5A718C),
+                color: Color(0xFF4CAF50),
                 fontWeight: FontWeight.bold,
                 decoration: TextDecoration.underline),
           ),
@@ -215,7 +236,7 @@ class _SignInScreenState extends State<SignInScreen> {
         child: const Text(
           "Forgot Password?",
           style: TextStyle(
-            color: Color(0xFF5A718C),
+            color: Color(0xFF4CAF50),
             fontWeight: FontWeight.bold,
           ),
           textAlign: TextAlign.right,

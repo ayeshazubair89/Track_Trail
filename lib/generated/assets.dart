@@ -2,8 +2,29 @@
 class Assets {
   Assets._();
 
+  static const String fontsPoppinsBold = 'assets/fonts/Poppins-Bold.ttf';
+  static const String fontsPoppinsRegular = 'assets/fonts/Poppins-Regular.ttf';
+  static const String generatedAssets = 'lib/generated/assets.dart';
+  static const String habitTrackingAddHabitScreen = 'lib/views/habit_tracking/add_habit_screen.dart';
+  static const String habitTrackingHabitHomeScreen = 'lib/views/habit_tracking/habit_home_screen.dart';
   static const String imagesOnboarding1 = 'assets/images/onboarding_1.png';
   static const String imagesOnboarding2 = 'assets/images/onboarding_2.png';
   static const String imagesOnboarding3 = 'assets/images/onboarding_3.png';
+  static const String libFirebaseOptions = 'lib/firebase_options.dart';
+  static const String libMain = 'lib/main.dart';
+  static const String modelHabitModel = 'lib/model/habit_model.dart';
+  static const String reusableWidgetsReusableWidget = 'lib/reusable_widgets/reusable_widget.dart';
+  static const String screensCommunityScreen = 'lib/views/screens/community_screen.dart';
+  static const String screensHomeScreen = 'lib/views/screens/home_screen.dart';
+  static const String screensMainScreen = 'lib/views/screens/main_screen.dart';
+  static const String screensNotificationScreen = 'lib/views/screens/notification_screen.dart';
+  static const String screensOnboardingScreen = 'lib/views/screens/onboarding_screen.dart';
+  static const String screensProfileScreen = 'lib/views/screens/profile_screen.dart';
+  static const String screensResetPassword = 'lib/views/screens/reset_password.dart';
+  static const String screensSigninScreen = 'lib/views/screens/signin_screen.dart';
+  static const String screensSignupScreen = 'lib/views/screens/signup_screen.dart';
+  static const String screensTodoScreen = 'lib/views/screens/todo_screen.dart';
+  static const String utilsColorUtils = 'lib/utils/color_utils.dart';
+  static const String viewsExtra = 'lib/views/extra.dart';
 
 }

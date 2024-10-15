@@ -27,8 +27,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              hexStringToColor("B0C7E1"),
-              hexStringToColor("DFEEF6"),
+              hexStringToColor("FFFFFF"),
+              hexStringToColor("FFFFFF"),
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -41,9 +41,39 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Column(
               children: <Widget>[
                 // Logo Widget
-                logoWidget("assets/images/onboarding_2.png"),
+              //  logoWidget("assets/images/onboarding_2.png"),
+                Text(
+                  'TRack TRail',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF4CAF50),
+                    fontFamily: 'Poppins',
+                  ),
+                ),
+                Text(
+                  'Sign Up !',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 21,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black54,
+                    fontFamily: 'Poppins',
+                  ),
+                ),
+                Text(
+                  "Create your Account.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16,
 
-                const SizedBox(height: 30),
+                    color: Colors.black54,
+                    fontFamily: 'Poppins',
+                  ),
+                ),
+
+                const SizedBox(height: 70),
 
                 // Username Text Field
                 Container(
@@ -142,7 +172,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
-                    backgroundColor: Color(0xFFb0c7e1), // Text color
+                    backgroundColor:Color(0xFF4CAF50), // Text color
                     padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
@@ -172,7 +202,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       child: const Text(
                         " Sign In",
                         style: TextStyle(
-                            color: Color(0xFF5A718C),
+                            color: Color(0xFF4CAF50),
                             fontWeight: FontWeight.bold,
                             decoration: TextDecoration.underline),
                       ),
