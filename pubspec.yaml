@@ -58,6 +58,7 @@ dependencies:
   get: ^4.6.6
   form_validator: ^2.1.0
   singleton: ^0.0.2
+  image_picker: ^1.1.2
 
 dev_dependencies:
   flutter_test:

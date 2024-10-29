@@ -7,6 +7,7 @@ class HabitTrackingApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: HabitListScreen(),
     );
   }
@@ -64,26 +65,29 @@ class HabitListScreen extends StatelessWidget {
                   : 'Untitled Habit';
 
               // Handle potential null or missing progress fields
+              // Handle potential null or missing progress fields
               int currentValue = habitData != null &&
                   habitData.containsKey('progress') &&
-                  habitData['progress'] != null &&
-                  habitData['progress'].containsKey('currentValue')
-                  ? habitData['progress']['currentValue']
+                  habitData['progress'] is Map<String, dynamic> &&
+                  habitData['progress']!.containsKey('currentValue')
+                  ? habitData['progress']!['currentValue']
                   : 0;
 
               int targetValue = habitData != null &&
                   habitData.containsKey('progress') &&
-                  habitData['progress'] != null &&
-                  habitData['progress'].containsKey('targetValue')
-                  ? habitData['progress']['targetValue']
+                  habitData['progress'] is Map<String, dynamic> &&
+                  habitData['progress']!.containsKey('targetValue')
+                  ? habitData['progress']!['targetValue']
                   : 0;
 
               String units = habitData != null &&
                   habitData.containsKey('progress') &&
-                  habitData['progress'] != null &&
-                  habitData['progress'].containsKey('units')
-                  ? habitData['progress']['units']
+                  habitData['progress'] is Map<String, dynamic> &&
+                  habitData['progress']!.containsKey('units')
+                  ? habitData['progress']!['units']
                   : '';
+
+
 
               return Card(
                 color:  Colors.white,
