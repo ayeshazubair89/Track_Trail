@@ -49,7 +49,7 @@ class OnboardingScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         Text(
-                          'Welcome to Track Trail',
+                          'Welcome to FitX',
                           style: TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
@@ -60,7 +60,7 @@ class OnboardingScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 10),
                         Text(
-                          'Start your self-improvement journey with Track Trail. Discover powerful features to track and enhance your habits.',
+                          'Start your self-improvement journey with FitX. Discover powerful features to track and enhance your habits.',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 16,

@@ -7,9 +7,14 @@ class Assets {
   static const String generatedAssets = 'lib/generated/assets.dart';
   static const String habitTrackingAddHabitScreen = 'lib/views/habit_tracking/add_habit_screen.dart';
   static const String habitTrackingHabitHomeScreen = 'lib/views/habit_tracking/habit_home_screen.dart';
+  static const String imagesCard = 'assets/images/card.png';
+  static const String imagesCard1 = 'assets/images/card1.png';
   static const String imagesOnboarding1 = 'assets/images/onboarding_1.png';
   static const String imagesOnboarding2 = 'assets/images/onboarding_2.png';
   static const String imagesOnboarding3 = 'assets/images/onboarding_3.png';
+  static const String imagesSleep = 'assets/images/sleep.png';
+  static const String imagesSleep1 = 'assets/images/Sleep1.png';
+  static const String imagesSleepBed = 'assets/images/sleep_bed.png';
   static const String libFirebaseOptions = 'lib/firebase_options.dart';
   static const String libMain = 'lib/main.dart';
   static const String modelHabitModel = 'lib/model/habit_model.dart';
@@ -19,11 +24,14 @@ class Assets {
   static const String screensMainScreen = 'lib/views/screens/main_screen.dart';
   static const String screensNotificationScreen = 'lib/views/screens/notification_screen.dart';
   static const String screensOnboardingScreen = 'lib/views/screens/onboarding_screen.dart';
+  static const String screensProfile view = 'lib/views/screens/profile view.dart';
   static const String screensProfileScreen = 'lib/views/screens/profile_screen.dart';
   static const String screensResetPassword = 'lib/views/screens/reset_password.dart';
   static const String screensSigninScreen = 'lib/views/screens/signin_screen.dart';
   static const String screensSignupScreen = 'lib/views/screens/signup_screen.dart';
+  static const String screensSleepScreen = 'lib/views/screens/sleep_screen.dart';
   static const String screensTodoScreen = 'lib/views/screens/todo_screen.dart';
+  static const String screensWaterIntake = 'lib/views/screens/water_intake.dart';
   static const String utilsColorUtils = 'lib/utils/color_utils.dart';
   static const String viewsExtra = 'lib/views/extra.dart';
 

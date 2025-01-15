@@ -3,6 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:track_trail2/views/screens/onboarding_screen.dart';
 import 'package:track_trail2/views/screens/signin_screen.dart';
+import 'package:track_trail2/views/screens/sleep_screen.dart';
+import 'package:track_trail2/views/screens/water_intake.dart';
 
 import 'firebase_options.dart';
 
@@ -48,7 +50,10 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         useMaterial3: true,
       ),
-      home: onboardingComplete ? SignInScreen() : OnboardingScreen(),
+      home: onboardingComplete ?SignInScreen() : OnboardingScreen(),
+      /* WaterTrackerApp(): WaterTrackerApp(),*/
+      /*SleepDashboardScreen():SleepDashboardScreen(),*/
+
     );
   }
 }

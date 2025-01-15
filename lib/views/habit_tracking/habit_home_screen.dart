@@ -3,10 +3,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'add_habit_screen.dart';
 
+
 class HabitTrackingApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: HabitListScreen(),
     );
   }
@@ -19,10 +21,10 @@ class HabitListScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "Habit Tracker",
-          style: TextStyle(color:  Colors.white),
+          style: TextStyle(color: Colors.white),
         ),
         backgroundColor: const Color(0xFF4CAF50),
-        elevation: 0, // Remove shadow from AppBar for a clean look
+        elevation: 0,
         actions: [
           IconButton(
             icon: Icon(Icons.calendar_today, color: Colors.white),
@@ -36,118 +38,164 @@ class HabitListScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('habits').snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator(color: const Color(0xFF4CAF50)));
-          }
-          if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}', style: TextStyle(color: Colors.red)));
-          }
-          if (!snapshot.hasData || snapshot.data == null || snapshot.data!.docs.isEmpty) {
-            return Center(child: Text('No data available', style: TextStyle(color: const Color(0xFF4CAF50))));
-          }
+      body: Column(
+        children: [
+          // Calendar section (Horizontal date view)
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 8),
+            color: const Color(0xFF4CAF50),
 
-          var habits = snapshot.data!.docs;
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: List.generate(31, (index) {
+                  DateTime date = DateTime(2024, 12, index + 1); // Generate dates for December 2024
+                  String formattedDate = '${date.day.toString().padLeft(2, '0')} Dec';
 
-          return ListView.builder(
-            padding: EdgeInsets.all(16),
-            itemCount: habits.length,
-            itemBuilder: (context, index) {
-              var habit = habits[index];
-              var habitData = habit.data() as Map<String, dynamic>?;
-
-              // Check if the "title" field exists, else provide a default value
-              String title = habitData != null && habitData.containsKey('title')
-                  ? habitData['title']
-                  : 'Untitled Habit';
-
-              // Handle potential null or missing progress fields
-              int currentValue = habitData != null &&
-                  habitData.containsKey('progress') &&
-                  habitData['progress'] != null &&
-                  habitData['progress'].containsKey('currentValue')
-                  ? habitData['progress']['currentValue']
-                  : 0;
-
-              int targetValue = habitData != null &&
-                  habitData.containsKey('progress') &&
-                  habitData['progress'] != null &&
-                  habitData['progress'].containsKey('targetValue')
-                  ? habitData['progress']['targetValue']
-                  : 0;
-
-              String units = habitData != null &&
-                  habitData.containsKey('progress') &&
-                  habitData['progress'] != null &&
-                  habitData['progress'].containsKey('units')
-                  ? habitData['progress']['units']
-                  : '';
-
-              return Card(
-                color:  Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                elevation: 4,
-                margin: EdgeInsets.symmetric(vertical: 8),
-                child: ListTile(
-                  title: Text(
-                    title,
-                    style: TextStyle(
-                      color: const Color(0xFF4CAF50),
-                      fontWeight: FontWeight.bold,
+                  return Container(
+                    margin: EdgeInsets.symmetric(horizontal: 4),
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 4,
+                          offset: Offset(2, 2),
+                        ),
+                      ],
                     ),
-                  ),
-                  subtitle: Text(
-                    'Progress: $currentValue / $targetValue $units',
-                    style: TextStyle(
-                      color: Colors.black54,
+                    child: Center(
+                      child: Text(
+                        formattedDate,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green,
+                        ),
+                      ),
                     ),
-                  ),
-                  onTap: () {
-                    // Navigate to a detail screen if needed
-                  },
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(
-                        icon: Icon(Icons.edit, color: const Color(0xFFB0C7E1)),
-                        onPressed: () {
-                          // Navigate to edit screen
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => AddHabitScreen(habitId: habit.id),
+                  );
+                }),
+              ),
+            ),
+          ),
+          // Habit List Section
+          Expanded(
+            child: StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance.collection('habits').snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator(color: const Color(0xFF4CAF50)));
+                }
+                if (snapshot.hasError) {
+                  return Center(child: Text('Error: ${snapshot.error}', style: TextStyle(color: Colors.red)));
+                }
+                if (!snapshot.hasData || snapshot.data == null || snapshot.data!.docs.isEmpty) {
+                  return Center(child: Text('No data available', style: TextStyle(color: const Color(0xFF4CAF50))));
+                }
+
+                var habits = snapshot.data!.docs;
+
+                return ListView.builder(
+                  padding: EdgeInsets.all(16),
+                  itemCount: habits.length,
+                  itemBuilder: (context, index) {
+                    var habit = habits[index];
+                    var habitData = habit.data() as Map<String, dynamic>?;
+
+                    String title = habitData != null && habitData.containsKey('title')
+                        ? habitData['title']
+                        : 'Untitled Habit';
+
+                    int currentValue = habitData != null &&
+                        habitData.containsKey('progress') &&
+                        habitData['progress'] is Map<String, dynamic> &&
+                        habitData['progress']!.containsKey('currentValue')
+                        ? habitData['progress']!['currentValue']
+                        : 0;
+
+                    int targetValue = habitData != null &&
+                        habitData.containsKey('progress') &&
+                        habitData['progress'] is Map<String, dynamic> &&
+                        habitData['progress']!.containsKey('targetValue')
+                        ? habitData['progress']!['targetValue']
+                        : 0;
+
+                    String units = habitData != null &&
+                        habitData.containsKey('progress') &&
+                        habitData['progress'] is Map<String, dynamic> &&
+                        habitData['progress']!.containsKey('units')
+                        ? habitData['progress']!['units']
+                        : '';
+
+                    return Card(
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      elevation: 4,
+                      margin: EdgeInsets.symmetric(vertical: 8),
+                      child: ListTile(
+                        title: Text(
+                          title,
+                          style: TextStyle(
+                            color: const Color(0xFF4CAF50),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        subtitle: Text(
+                          'Progress: $currentValue / $targetValue $units',
+                          style: TextStyle(
+                            color: Colors.black54,
+                          ),
+                        ),
+                        onTap: () {
+                          // Navigate to a detail screen if needed
+                        },
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              icon: Icon(Icons.edit, color: const Color(0xFFB0C7E1)),
+                              onPressed: () {
+                                // Navigate to edit screen
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => AddHabitScreen(habitId: habit.id),
+                                  ),
+                                );
+                              },
                             ),
-                          );
-                        },
+                            IconButton(
+                              icon: Icon(Icons.check_circle, color: Colors.green),
+                              onPressed: () {
+                                // Mark habit as complete
+                                FirebaseFirestore.instance
+                                    .collection('habits')
+                                    .doc(habit.id)
+                                    .update({'completed': true});
+                              },
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.delete, color: Colors.red),
+                              onPressed: () {
+                                // Delete habit
+                                FirebaseFirestore.instance.collection('habits').doc(habit.id).delete();
+                              },
+                            ),
+                          ],
+                        ),
                       ),
-                      IconButton(
-                        icon: Icon(Icons.check_circle, color: Colors.green),
-                        onPressed: () {
-                          // Mark habit as complete
-                          FirebaseFirestore.instance
-                              .collection('habits')
-                              .doc(habit.id)
-                              .update({'completed': true});
-                        },
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.delete, color: Colors.red),
-                        onPressed: () {
-                          // Delete habit
-                          FirebaseFirestore.instance.collection('habits').doc(habit.id).delete();
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          );
-        },
+                    );
+                  },
+                );
+              },
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -159,7 +207,7 @@ class HabitListScreen extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
       ),
-      backgroundColor: Colors.white, // Background color to complement the theme
+      backgroundColor: Colors.white,
     );
   }
 
@@ -208,3 +256,4 @@ class HabitCalendarScreen extends StatelessWidget {
     );
   }
 }
+
