@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:track_trail2/views/screens/main_screen.dart';
 import 'package:track_trail2/views/screens/signin_screen.dart';
 import '../../reusable_widgets/reusable_widget.dart';
 import '../../utils/color_utils.dart';
@@ -43,7 +44,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 // Logo Widget
               //  logoWidget("assets/images/onboarding_2.png"),
                 Text(
-                  'TRack TRail',
+                  'FitX',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 35,
@@ -160,7 +161,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => HomeScreen(),
+                          builder: (context) => MainScreen(),
                         ),
                       );
                     }).onError((error, stackTrace) {

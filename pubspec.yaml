@@ -36,10 +36,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   firebase_core: ^2.10.0
-
+  image_picker: ^0.8.7+3
   introduction_screen: ^3.0.1
   # For onboarding slides
+  youtube_player_flutter: ^8.1.0
 
+  http: ^1.2.2
   firebase_auth: ^4.5.0
   google_sign_in: ^5.4.0
   cloud_firestore: ^4.17.5
@@ -47,13 +49,14 @@ dependencies:
   firebase_messaging: ^14.9.4
   cloud_firestore_web: ^3.12.5
   firebase_auth_web: ^5.12.0
-
-  fl_chart: ^0.55.2
+#youtube screen
+  url_launcher: ^6.1.8
+  fl_chart: ^0.63.0
   table_calendar: ^3.1.2
   shared_preferences: ^2.0.13
   flutter_svg: ^1.0.0
-
-
+  percent_indicator: ^4.2.2
+  timeline_tile: ^2.0.0
   #noor's file libraries
   get: ^4.6.6
   form_validator: ^2.1.0
@@ -70,6 +73,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
+  shared_preferences: ^2.3.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

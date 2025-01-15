@@ -25,10 +25,13 @@ def flutterVersionName = localProperties.getProperty("flutter.versionName")
 if (flutterVersionName == null) {
     flutterVersionName = "1.0"
 }
-
+//android {
+//    compileSdkVersion 33 // or a lower version
+//}
 android {
     namespace = "com.example.track_trail2"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 35
+            //flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -42,7 +45,8 @@ android {
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        targetSdk =  35
+                //flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
     }
@@ -59,3 +63,4 @@ android {
 flutter {
     source = "../.."
 }
+

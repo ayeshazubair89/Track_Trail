@@ -19,9 +19,10 @@ class _MainScreenState extends State<MainScreen> {
   final List<Widget> _screens = [
     HomeScreen(),
     HabitTrackingApp(),
+
+ /*   NotificationScreen(),*/
+    YouTubeHealthScreen(),
     ProfileScreen(),
-    NotificationScreen(),
-    TodoScreen(),
   ];
 
   @override
@@ -42,20 +43,20 @@ class _MainScreenState extends State<MainScreen> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search, color:Color(0xFF4CAF50),),
-            label: 'Search',
+            icon: Icon(Icons.art_track, color:Color(0xFF4CAF50),),
+            label: 'Track ',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.recommend_rounded, color: Color(0xFF4CAF50),),
+            label: 'Recomendation',
+          ),
+          /*BottomNavigationBarItem(
+            icon: Icon(Icons.notifications, color: Color(0xFF4CAF50),),
+            label: 'Notifications',
+          ),*/
           BottomNavigationBarItem(
             icon: Icon(Icons.person, color: Color(0xFF4CAF50),),
             label: 'Profile',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications, color: Color(0xFF4CAF50),),
-            label: 'Notifications',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings, color: Color(0xFF4CAF50),),
-            label: 'Settings',
           ),
         ],
       ),
